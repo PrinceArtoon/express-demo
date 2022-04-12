@@ -11,10 +11,11 @@ var ClientRouter = require('./routes/customers');
 var courseRouter = require('./routes/course');
 var GenraRouter = require('./routes/genre');
 var MovieRouter = require('./routes/movies')
+var RentalRouter = require('./routes/rental')
 
 var app = express();
 
-mongoose.connect('mongodb://localhost/etc')
+mongoose.connect('mongodb://localhost:27017/etc',{ useNewUrlParser: true})
 .then( () => console.log('Connected to Mongodb'))
 .catch( err => console.log('Could Not Connect TO MongoDb', err))
 
@@ -34,6 +35,7 @@ app.use('/customers', ClientRouter);
 app.use(courseRouter)
 app.use(GenraRouter)
 app.use(MovieRouter)
+app.use(RentalRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
